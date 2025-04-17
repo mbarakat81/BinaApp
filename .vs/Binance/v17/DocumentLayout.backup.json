@@ -1,0 +1,262 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\MSAPP1\\Binance\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|c:\\msapp1\\binance\\binance\\scalpingstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|solutionrelative:binance\\scalpingstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|c:\\msapp1\\binance\\binance\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|solutionrelative:binance\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|c:\\msapp1\\binance\\binance\\marketcondition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|solutionrelative:binance\\marketcondition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|c:\\msapp1\\binance\\binance\\traderesult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|solutionrelative:binance\\traderesult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|c:\\msapp1\\binance\\binance\\marketanalyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|solutionrelative:binance\\marketanalyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|c:\\msapp1\\binance\\binance\\strategymetrics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|solutionrelative:binance\\strategymetrics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|c:\\msapp1\\binance\\binance\\coinselector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|solutionrelative:binance\\coinselector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|c:\\msapp1\\binance\\binance\\indicatorcalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|solutionrelative:binance\\indicatorcalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|c:\\msapp1\\binance\\binance\\parameteroptimizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|solutionrelative:binance\\parameteroptimizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|c:\\msapp1\\binance\\binance\\sentimentanalyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|solutionrelative:binance\\sentimentanalyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|c:\\msapp1\\binance\\binance\\coindata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|solutionrelative:binance\\coindata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|c:\\msapp1\\binance\\binance\\keypricelevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|solutionrelative:binance\\keypricelevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|c:\\msapp1\\binance\\binance\\pricelevelanalyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|solutionrelative:binance\\pricelevelanalyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|c:\\msapp1\\binance\\binance\\orderbookanalyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE079F42-C47C-46B1-B3E8-0144E0BB8A62}|Binance\\Binance.csproj|solutionrelative:binance\\orderbookanalyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IndicatorCalculator.cs",
+              "DocumentMoniker": "C:\\MSAPP1\\Binance\\Binance\\IndicatorCalculator.cs",
+              "RelativeDocumentMoniker": "Binance\\IndicatorCalculator.cs",
+              "ToolTip": "C:\\MSAPP1\\Binance\\Binance\\IndicatorCalculator.cs",
+              "RelativeToolTip": "Binance\\IndicatorCalculator.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAcwJgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T03:45:06.063Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ParameterOptimizer.cs",
+              "DocumentMoniker": "C:\\MSAPP1\\Binance\\Binance\\ParameterOptimizer.cs",
+              "RelativeDocumentMoniker": "Binance\\ParameterOptimizer.cs",
+              "ToolTip": "C:\\MSAPP1\\Binance\\Binance\\ParameterOptimizer.cs",
+              "RelativeToolTip": "Binance\\ParameterOptimizer.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAcwDcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T03:44:42.744Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ScalpingStrategy.cs",
+              "DocumentMoniker": "C:\\MSAPP1\\Binance\\Binance\\ScalpingStrategy.cs",
+              "RelativeDocumentMoniker": "Binance\\ScalpingStrategy.cs",
+              "ToolTip": "C:\\MSAPP1\\Binance\\Binance\\ScalpingStrategy.cs*",
+              "RelativeToolTip": "Binance\\ScalpingStrategy.cs*",
+              "ViewState": "AgIAAGsFAAAAAAAAAAAIwIUFAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T03:43:54.328Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SentimentAnalyzer.cs",
+              "DocumentMoniker": "C:\\MSAPP1\\Binance\\Binance\\SentimentAnalyzer.cs",
+              "RelativeDocumentMoniker": "Binance\\SentimentAnalyzer.cs",
+              "ToolTip": "C:\\MSAPP1\\Binance\\Binance\\SentimentAnalyzer.cs",
+              "RelativeToolTip": "Binance\\SentimentAnalyzer.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAcwC8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T03:43:31.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CoinData.cs",
+              "DocumentMoniker": "C:\\MSAPP1\\Binance\\Binance\\CoinData.cs",
+              "RelativeDocumentMoniker": "Binance\\CoinData.cs",
+              "ToolTip": "C:\\MSAPP1\\Binance\\Binance\\CoinData.cs",
+              "RelativeToolTip": "Binance\\CoinData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T13:58:47.014Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MarketCondition.cs",
+              "DocumentMoniker": "C:\\MSAPP1\\Binance\\Binance\\MarketCondition.cs",
+              "RelativeDocumentMoniker": "Binance\\MarketCondition.cs",
+              "ToolTip": "C:\\MSAPP1\\Binance\\Binance\\MarketCondition.cs",
+              "RelativeToolTip": "Binance\\MarketCondition.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T13:58:21.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "KeyPriceLevel.cs",
+              "DocumentMoniker": "C:\\MSAPP1\\Binance\\Binance\\KeyPriceLevel.cs",
+              "RelativeDocumentMoniker": "Binance\\KeyPriceLevel.cs",
+              "ToolTip": "C:\\MSAPP1\\Binance\\Binance\\KeyPriceLevel.cs",
+              "RelativeToolTip": "Binance\\KeyPriceLevel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T13:57:56.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TradeResult.cs",
+              "DocumentMoniker": "C:\\MSAPP1\\Binance\\Binance\\TradeResult.cs",
+              "RelativeDocumentMoniker": "Binance\\TradeResult.cs",
+              "ToolTip": "C:\\MSAPP1\\Binance\\Binance\\TradeResult.cs",
+              "RelativeToolTip": "Binance\\TradeResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA8AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T13:57:34.408Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "StrategyMetrics.cs",
+              "DocumentMoniker": "C:\\MSAPP1\\Binance\\Binance\\StrategyMetrics.cs",
+              "RelativeDocumentMoniker": "Binance\\StrategyMetrics.cs",
+              "ToolTip": "C:\\MSAPP1\\Binance\\Binance\\StrategyMetrics.cs",
+              "RelativeToolTip": "Binance\\StrategyMetrics.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T13:57:09.52Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CoinSelector.cs",
+              "DocumentMoniker": "C:\\MSAPP1\\Binance\\Binance\\CoinSelector.cs",
+              "RelativeDocumentMoniker": "Binance\\CoinSelector.cs",
+              "ToolTip": "C:\\MSAPP1\\Binance\\Binance\\CoinSelector.cs",
+              "RelativeToolTip": "Binance\\CoinSelector.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAAAJ8AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T13:56:47.798Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MarketAnalyzer.cs",
+              "DocumentMoniker": "C:\\MSAPP1\\Binance\\Binance\\MarketAnalyzer.cs",
+              "RelativeDocumentMoniker": "Binance\\MarketAnalyzer.cs",
+              "ToolTip": "C:\\MSAPP1\\Binance\\Binance\\MarketAnalyzer.cs",
+              "RelativeToolTip": "Binance\\MarketAnalyzer.cs",
+              "ViewState": "AgIAALgAAAAAAAAAAAAqwM8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T13:56:17.809Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\MSAPP1\\Binance\\Binance\\Program.cs",
+              "RelativeDocumentMoniker": "Binance\\Program.cs",
+              "ToolTip": "C:\\MSAPP1\\Binance\\Binance\\Program.cs",
+              "RelativeToolTip": "Binance\\Program.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAowIEAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T08:35:09.54Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PriceLevelAnalyzer.cs",
+              "DocumentMoniker": "C:\\MSAPP1\\Binance\\Binance\\PriceLevelAnalyzer.cs",
+              "RelativeDocumentMoniker": "Binance\\PriceLevelAnalyzer.cs",
+              "ToolTip": "C:\\MSAPP1\\Binance\\Binance\\PriceLevelAnalyzer.cs",
+              "RelativeToolTip": "Binance\\PriceLevelAnalyzer.cs",
+              "ViewState": "AgIAAKEAAAAAAAAAAAAcwMwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T13:55:46.199Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "OrderBookAnalyzer.cs",
+              "DocumentMoniker": "C:\\MSAPP1\\Binance\\Binance\\OrderBookAnalyzer.cs",
+              "RelativeDocumentMoniker": "Binance\\OrderBookAnalyzer.cs",
+              "ToolTip": "C:\\MSAPP1\\Binance\\Binance\\OrderBookAnalyzer.cs",
+              "RelativeToolTip": "Binance\\OrderBookAnalyzer.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAcwEQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T13:55:11.265Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

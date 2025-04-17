@@ -1,0 +1,42 @@
+{
+    "ETHUSDT": {
+        "TotalTrades": 0,
+        "ProfitableTrades": 0,
+        "TotalProfit": 0.0,
+        "MaxProfit": 0,
+        "MaxLoss": 0.0,
+        "AvgProfit": 0.0,
+        "WinRate": 0,
+        "Parameters": {}
+    },
+    "RAYUSDT": {
+        "TotalTrades": 0,
+        "ProfitableTrades": 0,
+        "TotalProfit": 0.0,
+        "MaxProfit": 0.0,
+        "MaxLoss": 0.0,
+        "AvgProfit": 0.0,
+        "WinRate": 0.0,
+        "Parameters": {}
+    },
+    "KERNELUSDT": {
+        "TotalTrades": 0,
+        "ProfitableTrades": 0,
+        "TotalProfit": 0.0,
+        "MaxProfit": 0.0,
+        "MaxLoss": 0.0,
+        "AvgProfit": 0.0,
+        "WinRate": 0.0,
+        "Parameters": {}
+    },
+    "STRAXUSDT": {
+        "TotalTrades": 0,
+        "ProfitableTrades": 0,
+        "TotalProfit": 0.0,
+        "MaxProfit": 0.0,
+        "MaxLoss": 0.0,
+        "AvgProfit": 0.0,
+        "WinRate": 0.0,
+        "Parameters": {}
+    }
+}
