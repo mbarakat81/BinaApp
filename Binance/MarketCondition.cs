@@ -12,7 +12,7 @@ namespace TradingBot.Models
         public bool IsVolatile { get; set; } = false;
         public bool IsStrongTrend { get; set; }
         public TrendDirection TrendDirection { get; set; }
-        public decimal RSI { get; set; }
+        public decimal RSIVolatility { get; set; }
         public bool MacdBullish { get; set; }
         public List<KeyPriceLevel> SupportLevels { get; set; } = new List<KeyPriceLevel>();
         public List<KeyPriceLevel> ResistanceLevels { get; set; } = new List<KeyPriceLevel>();

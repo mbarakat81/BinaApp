@@ -196,6 +196,7 @@
   <ItemGroup>
     <Compile Include="CoinData.cs" />
     <Compile Include="CoinSelector.cs" />
+    <Compile Include="CryptoDataCollector.cs" />
     <Compile Include="IndicatorCalculator.cs" />
     <Compile Include="KeyPriceLevel.cs" />
     <Compile Include="MarketAnalyzer.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="SentimentAnalyzer.cs" />
     <Compile Include="StrategyMetrics.cs" />
     <Compile Include="TradeResult.cs" />
+    <Compile Include="TriangularArbitrageSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

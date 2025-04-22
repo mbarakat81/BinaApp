@@ -13,12 +13,20 @@ using TradingBot.Analyzers;
 using TradingBot.Strategies;
 using TradingBot.Utilities;
 using TradingBot;
+using Newtonsoft.Json.Linq;
 
 class Program
 {
     // Performance tracking to optimize parameters
     private static Dictionary<string, StrategyMetrics> strategyPerformance = new Dictionary<string, StrategyMetrics>();
     private static readonly string performanceFilePath = "strategy_performance.json";
+
+    // Arbitrage tracking
+    private static readonly string arbitragePerformanceFilePath = "arbitrage_performance.json";
+    private static List<ArbitrageResult> arbitrageHistory = new List<ArbitrageResult>();
+    private static decimal totalArbitrageProfit = 0;
+    private static int arbitrageAttempts = 0;
+    private static int successfulArbitrageTrades = 0;
 
     // Multi-coin trading parameters
     private static int maxConcurrentCoins = 3; // Set to 3 as requested
@@ -35,6 +43,18 @@ class Program
     // Added to track current balance more accurately
     private static decimal currentBalance = 0;
     private static DateTime lastBalanceCheck = DateTime.MinValue;
+
+    // Arbitrage system
+    private static TriangularArbitrageSystem arbitrageSystem;
+    private static DateTime lastArbitrageCheck = DateTime.MinValue;
+    private static TimeSpan arbitrageCheckInterval = TimeSpan.FromMinutes(5); // Check for arbitrage every 5 minutes
+    private static decimal arbitrageBudgetAllocation = 0.3m; // Use 30% of available funds for arbitrage
+    private static bool arbitrageSystemInitialized = false;
+    private static bool isArbitrageRunning = false;
+
+    // Cooldown for arbitrage after a failed attempt
+    private static DateTime arbitrageCooldownUntil = DateTime.MinValue;
+    private static readonly TimeSpan arbitrageCooldownTime = TimeSpan.FromMinutes(10);
 
     static async Task Main(string[] args)
     {
@@ -64,10 +84,22 @@ class Program
                     Console.WriteLine($"Setting minimum trade size to: ${minimumTradeSize}");
                 }
             }
+
+            // Check for arbitrage budget allocation setting
+            int arbitrageAllocArgIndex = Array.IndexOf(args, "--arb-allocation");
+            if (arbitrageAllocArgIndex >= 0 && args.Length > arbitrageAllocArgIndex + 1)
+            {
+                if (decimal.TryParse(args[arbitrageAllocArgIndex + 1], out decimal arbAllocation) && arbAllocation > 0 && arbAllocation < 1)
+                {
+                    arbitrageBudgetAllocation = arbAllocation;
+                    Console.WriteLine($"Setting arbitrage allocation to: {arbitrageBudgetAllocation:P0} of available balance");
+                }
+            }
         }
 
         // Load previous performance data if available
         LoadPerformanceData();
+        LoadArbitrageHistory();
 
         // Load previously restricted symbols if available
         LoadRestrictedSymbols();
@@ -79,6 +111,9 @@ class Program
         {
             options.ApiCredentials = new ApiCredentials(APIKEY, APISECRET);
         });
+
+        // Initialize arbitrage system
+        arbitrageSystem = new TriangularArbitrageSystem(client);
 
         // Get account balance info at start
         var accountInfo = await client.SpotApi.Account.GetAccountInfoAsync();
@@ -142,6 +177,11 @@ class Program
 
                     Console.WriteLine($"New daily budget: ${initialBudget:F2}");
                     Console.WriteLine($"New daily loss limit: ${maxDailyLoss:F2}");
+
+                    // Reset arbitrage stats for the day
+                    totalArbitrageProfit = 0;
+                    arbitrageAttempts = 0;
+                    successfulArbitrageTrades = 0;
                 }
 
                 // Check balance periodically (every 15 minutes)
@@ -172,14 +212,106 @@ class Program
                 }
 
                 // Update max concurrent coins based on available budget
-                int effectiveMaxCoins = Math.Min(maxConcurrentCoins, (int)(currentBalance / minimumTradeSize));
+                // Take arbitrage allocation into account when calculating effective budget for scalping
+                decimal effectiveScalpingBalance = currentBalance * (1 - arbitrageBudgetAllocation);
+                int effectiveMaxCoins = Math.Min(maxConcurrentCoins, (int)(effectiveScalpingBalance / minimumTradeSize));
                 if (effectiveMaxCoins < 1) effectiveMaxCoins = 1;
+
+                // --- START ARBITRAGE SYSTEM CHECK ---
+                // Check for arbitrage opportunities periodically and when no active positions
+                if (false && !isArbitrageRunning &&
+                    DateTime.Now > arbitrageCooldownUntil &&
+                    DateTime.Now > lastArbitrageCheck.AddMinutes(arbitrageCheckInterval.TotalMinutes) &&
+                    currentBalance >= 10) // Minimum $50 USDT for arbitrage
+                {
+                    decimal arbitrageBudget = 20;// currentBalance * arbitrageBudgetAllocation;
+
+                    // Initialize arbitrage system if not already done
+                    if (!arbitrageSystemInitialized)
+                    {
+                        try
+                        {
+                            Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] Initializing arbitrage system...");
+                            await arbitrageSystem.Initialize();
+                            arbitrageSystemInitialized = true;
+                            Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] Arbitrage system initialized successfully");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] Error initializing arbitrage system: {ex.Message}");
+                            arbitrageCooldownUntil = DateTime.Now.Add(TimeSpan.FromMinutes(30)); // Try again in 30 minutes
+                        }
+                    }
+
+                    if (arbitrageSystemInitialized)
+                    {
+                        try
+                        {
+                            isArbitrageRunning = true;
+                            arbitrageAttempts++;
+
+                            Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] Checking for arbitrage opportunities with budget: ${arbitrageBudget:F2} USDT...");
+
+                            // Check and execute arbitrage if profitable
+                            var arbitrageResult = await arbitrageSystem.CheckAndExecuteArbitrage(arbitrageBudget);
+
+                            lastArbitrageCheck = DateTime.Now;
+
+                            if (arbitrageResult.Success)
+                            {
+                                // Record successful arbitrage
+                                totalArbitrageProfit += arbitrageResult.Profit;
+                                successfulArbitrageTrades++;
+                                arbitrageHistory.Add(arbitrageResult);
+
+                                // Log the successful arbitrage
+                                Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] Arbitrage profit: {arbitrageResult.Profit:F8} USDT ({arbitrageResult.ProfitPercent:F2}%)");
+                                Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] Path: {arbitrageResult.Path}");
+
+                                // Save arbitrage history
+                                SaveArbitrageHistory();
+
+                                // Update actual balance after arbitrage
+                                lastBalanceCheck = DateTime.MinValue; // Force balance check on next loop
+                            }
+                            else if (!string.IsNullOrEmpty(arbitrageResult.Message) &&
+                                     !arbitrageResult.Message.StartsWith("No profitable arbitrage"))
+                            {
+                                // Log if there was an actual error (not just "no opportunity")
+                                Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] Arbitrage error: {arbitrageResult.Message}");
+
+                                // Set a cooldown if we had an execution error
+                                if (arbitrageResult.Message.Contains("failed") ||
+                                    arbitrageResult.Message.Contains("error") ||
+                                    arbitrageResult.Message.Contains("Exception"))
+                                {
+                                    arbitrageCooldownUntil = DateTime.Now.Add(arbitrageCooldownTime);
+                                    Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] Arbitrage cooldown until {arbitrageCooldownUntil:HH:mm:ss} due to error");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] No profitable arbitrage opportunities found");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] Error during arbitrage check: {ex.Message}");
+                            arbitrageCooldownUntil = DateTime.Now.Add(arbitrageCooldownTime); // Cooldown after error
+                        }
+                        finally
+                        {
+                            isArbitrageRunning = false;
+                        }
+                    }
+                }
+                // --- END ARBITRAGE SYSTEM CHECK ---
 
                 // Check if we need to update our list of monitored coins
                 if (DateTime.Now > lastCoinSelection.AddHours(coinRotationHours) || activeCoins.Count == 0)
                 {
                     Console.WriteLine("Selecting best coins for trading...");
-                    var topCoins = await CoinSelector.SelectBestTradingPairs(client, strategyPerformance, effectiveMaxCoins * 3);
+                    var topCoins = await CoinSelector.SelectBestTradingPairs(client, strategyPerformance, effectiveMaxCoins * 8);
 
                     // Filter out restricted symbols, blacklisted coins, and recent attempts
                     topCoins = topCoins
@@ -220,11 +352,11 @@ class Program
                 {
                     Console.WriteLine("Caution: Global market conditions unfavorable. Adjusting risk parameters.");
                     // Reduce position sizing in unfavorable global markets
-                    budget = Math.Min(currentBalance, initialBudget * 0.6m); // More conservative
+                    budget = Math.Min(effectiveScalpingBalance, initialBudget * 0.6m); // More conservative
                 }
                 else
                 {
-                    budget = currentBalance; // Use full available balance in favorable conditions
+                    budget = effectiveScalpingBalance; // Use available scalping balance in favorable conditions
                 }
 
                 // Calculate per-coin budget based on active positions and max concurrent coins
@@ -318,7 +450,8 @@ class Program
 
                         // If the reason is low volatility or something fundamental about the coin, mark for replacement
                         if (marketCondition.Reason.Contains("volatility") ||
-                            marketCondition.Reason.Contains("not suitable"))
+                            marketCondition.Reason.Contains("not suitable") ||
+                            marketCondition.Reason.Contains("waiting for better entry"))
                         {
                             lock (tradeLock)
                             {
@@ -385,7 +518,7 @@ class Program
                     // RELAXED CRITERIA: Allow more entries with neutral order book
                     if (orderBookSignal != OrderBookSignal.StrongBuy &&
                         orderBookSignal != OrderBookSignal.Buy &&
-                        marketCondition.RSI > 55 && // Changed from 40 to 55
+                        marketCondition.RSIVolatility > 55 && // Changed from 40 to 55
                         !nearSupport)
                     {
                         Console.WriteLine($"Skipping {symbol} - insufficient bullish signals");
@@ -554,7 +687,7 @@ class Program
                 {
                     // We have room for more coins
                     Console.WriteLine("Looking for additional coins to monitor...");
-                    var additionalCoins = await CoinSelector.SelectBestTradingPairs(client, strategyPerformance, effectiveMaxCoins * 3);
+                    var additionalCoins = await CoinSelector.SelectBestTradingPairs(client, strategyPerformance, effectiveMaxCoins * 8);
 
                     // Filter out coins already in our list, blacklisted, restricted, or recently attempted
                     additionalCoins = additionalCoins
@@ -584,7 +717,7 @@ class Program
                 if (totalProfit >= maxDailyProfit)
                 {
                     Console.WriteLine($"Daily profit target reached: ${totalProfit:F2}! Reducing position size to protect profits.");
-                    budget = currentBalance * 0.5m; // Reduce position size after hitting target
+                    budget = effectiveScalpingBalance * 0.5m; // Reduce position size after hitting target
                 }
 
                 if (consecutiveLosses >= maxConsecutiveLosses)
@@ -670,6 +803,45 @@ class Program
         catch (Exception ex)
         {
             Console.WriteLine($"Error saving performance data: {ex.Message}");
+        }
+    }
+
+    // New methods to save/load arbitrage history
+    private static void SaveArbitrageHistory()
+    {
+        try
+        {
+            string json = JsonSerializer.Serialize(arbitrageHistory);
+            File.WriteAllText(arbitragePerformanceFilePath, json);
+            Console.WriteLine($"Saved arbitrage history ({arbitrageHistory.Count} entries)");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving arbitrage history: {ex.Message}");
+        }
+    }
+
+    private static void LoadArbitrageHistory()
+    {
+        try
+        {
+            if (File.Exists(arbitragePerformanceFilePath))
+            {
+                string json = File.ReadAllText(arbitragePerformanceFilePath);
+                arbitrageHistory = JsonSerializer.Deserialize<List<ArbitrageResult>>(json) ?? new List<ArbitrageResult>();
+
+                // Calculate statistics from history
+                totalArbitrageProfit = arbitrageHistory.Sum(a => a.Profit);
+                successfulArbitrageTrades = arbitrageHistory.Count;
+
+                Console.WriteLine($"Loaded {arbitrageHistory.Count} arbitrage records");
+                Console.WriteLine($"Total historical arbitrage profit: {totalArbitrageProfit:F8} USDT");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading arbitrage history: {ex.Message}");
+            arbitrageHistory = new List<ArbitrageResult>();
         }
     }
 

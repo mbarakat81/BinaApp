@@ -82,7 +82,7 @@ namespace TradingBot.Analyzers
                 var ema21_5m = IndicatorCalculator.CalculateEMA(closes5m, 21);
 
                 // Calculate RSI
-                condition.RSI = IndicatorCalculator.CalculateRSI(closes5m, 14);
+                condition.RSIVolatility = IndicatorCalculator.CalculateRSI(closes5m, 14);
 
                 // Calculate MACD
                 var (macdLine, signalLine) = IndicatorCalculator.CalculateMACD(closes5m);
@@ -150,13 +150,13 @@ namespace TradingBot.Analyzers
                     condition.Reason = "Low volume in downtrend market";
                 }
 
-                if (condition.RSI < 35 && condition.TrendDirection == TrendDirection.Down)  // Increased from 30 to 35
+                if (condition.RSIVolatility < 35 && condition.TrendDirection == TrendDirection.Down)  // Increased from 30 to 35
                 {
                     condition.IsFavorable = false;
                     condition.Reason = "Oversold in downtrend - potential for further decline";
                 }
 
-                if (condition.RSI > 65 && !condition.MacdBullish)  // Reduced from 70 to 65
+                if (condition.RSIVolatility > 65 && !condition.MacdBullish)  // Reduced from 70 to 65
                 {
                     condition.IsFavorable = false;
                     condition.Reason = "Overbought with bearish MACD - potential reversal";
@@ -178,8 +178,8 @@ namespace TradingBot.Analyzers
 
                 // Require recent momentum for better entries, but exempt uptrends with good RSI
                 if (!recentMomentum &&
-                    !(condition.TrendDirection == TrendDirection.Up && condition.RSI > 40 && condition.RSI < 70) &&
-                    !(condition.MacdBullish && condition.RSI < 60))
+                    !(condition.TrendDirection == TrendDirection.Up && condition.RSIVolatility > 40 && condition.RSIVolatility < 70) &&
+                    !(condition.MacdBullish && condition.RSIVolatility < 60))
                 {
                     condition.IsFavorable = false;
                     condition.Reason = "Insufficient recent momentum - waiting for better entry";
